@@ -1,0 +1,33 @@
+@mixin displayflex-justify-align($justify,$align){
+display: flex;
+justify-content: justify;
+align-items: align;
+}
+
+@mixin justify(){
+    display: flex;
+    justify-content: center;
+}
+
+@mixin max-width-height(){
+    width: 100%;
+    height: 100%;
+}
+
+@mixin section(){
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@mixin section-background($url){
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    background-image: url(url);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
