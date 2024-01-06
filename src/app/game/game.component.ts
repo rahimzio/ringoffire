@@ -54,6 +54,9 @@ export class GameComponent implements OnInit{
     if (poppedCard !== undefined) {
       this.currentCard = poppedCard;
     }
+
+  git config --global user.email "rahimzio11@gmail.com"
+  git config --global user.name "rahimzio"
     
     this.game.currentPlayer ++;
     this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
