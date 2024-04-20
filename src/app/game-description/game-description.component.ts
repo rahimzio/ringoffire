@@ -49,14 +49,14 @@ export class GameDescriptionComponent implements OnChanges{
     { title: 'Schere/Stein/Papier', description: 'ihr spielt ne riesen Runde schere/stein/papier jeder Verlierer Kriegt nen strafschluck' },
     { title: 'Speifrei seid 93', description: 'wenn du seid in den letzen 12 Monaten gekotz hast trink' },
     { title: 'W bin Ich?', description: 'verlasse kurz den Raum und wenn du wiederkommst hast du 3Min Zeit zueratten wer du bist wenn du es schaffst müssen alle ausser du trinken' },
-    { title: 'j', description: 'wer heute die meisten Joints geraucht hast dreht auf und darf 4 Schlücke verteilen' },
+    { title: 'ju', description: 'wer heute die meisten Joints geraucht hast dreht auf und darf 4 Schlücke verteilen' },
     { title: 'Filmgenies', description: 'Nennt alle filme die mit den Anfangsbuchstaben von dem spieler anfangen welchen keine mehr einfallen nimmt 2 Strafschlücke' },
     { title: 'Raucherpause', description: 'Jede Person die es geniesst Ziga/CB-Rette zurauchen nimmt 1 strafschluck' },
     { title: 'Auf Flasche gesetzt', description: 'Trink deine mische aus' },
-    { title: 'k', description: 'Alle Männer trinken.' },
-    { title: 'j', description: 'Leo darf sich jemanden aussuchen der Trinken muss' },
-    { title: '7', description: 'Sage etwas, das du noch nie gemacht hast. Jeder, der es getan hat, muss trinken.' },
-    { title: 'Regel', description: 'Stelle eine Regel auf. Jeder muss trinken, wenn er gegen die Regel verstößt.' }
+    { title: 'Odnungswiedrigkeit', description: 'wer schonmal unter einfluss von drogen gefahren ist (Roller/Auto/SCOOTER...) kriegt einen straf schluck' },
+    { title: 'Striker', description: 'die Person die am besten in fussball ist darf 2 strafschlücke verteilen' },
+    { title: 'Wort verbot', description: 'du darfst ein wort aussuchen das bis zum ende des spiels nicht benutzt werden darf, falls doch kriegt die perosn einen strafschluck' },
+    { title: 'Pedobär', description: 'alle personen die unter 19 sind müssen 1 strafschluck nehmen deren lebenspatner müssen 3 nehmen' }
 ];
 
   title = '';
