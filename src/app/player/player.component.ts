@@ -14,6 +14,7 @@ import { Game } from '../../models/game';
 export class PlayerComponent {
   @Input() game: Game = new Game();
   @Input() name:string|undefined;
+  @Input() image:any = "1.png";
   @Input() index:number = 0;
   @Input() activePlayer:boolean = false;
 }

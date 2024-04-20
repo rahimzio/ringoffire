@@ -27,30 +27,58 @@ export class GameDescriptionComponent implements OnChanges{
     { title: 'Rule', description: 'Make a rule. Everyone needs to drink when he breaks the rule.' },
   ];
 
-  cardActionDE = [
-      { title: 'Wasserfall', description: 'Alle müssen gleichzeitig mit dem Trinken beginnen. Sobald Spieler 1 aufhört zu trinken, darf Spieler 2 aufhören zu trinken. Spieler 3 darf aufhören, sobald Spieler 2 aufgehört hat zu trinken, und so weiter.' },
+  cardActionDE1 = [
+      { title: 'Wasserfall', description: 'Alle müssen gleichzeitig mit dem Trinken beginnen. wer als letzes seine mische leer hat macht sich ne neue.' },
       { title: 'Du', description: 'Du entscheidest, wer trinkt.' },
       { title: 'Ich', description: 'Herzlichen Glückwunsch! Trinke einen Shot!' },
-      { title: 'Kategorie', description: 'Überlege dir eine Kategorie (z. B. Farben). Jeder Spieler muss einen Gegenstand aus dieser Kategorie aufzählen.' },
-      { title: 'Bust a Jive', description: 'Spieler 1 macht einen Tanzschritt. Spieler 2 wiederholt den Tanzschritt und fügt einen zweiten hinzu.' },
+      { title: 'Kategorie', description: 'Überlege dir eine Kategorie (z. B. Farben,Micha Storys,eger chill spots...). Jeder Spieler muss einen Gegenstand aus dieser Kategorie aufzählen.' },
+      { title: 'Wer bin Ich?', description: 'verlasse kurz den Raum und wenn du wiederkommst hast du 3Min Zeit zueratten wer du bist wenn du es schaffst müssen alle ausser du trinken' },
       { title: 'Mädels', description: 'Alle Mädchen trinken.' },
       { title: 'Himmel', description: 'Hände hoch! Der letzte Spieler trinkt!' },
       { title: 'Kumpel', description: 'Suche dir einen Kumpel aus. Dein Kumpel muss immer trinken, wenn du trinkst, und umgekehrt.' },
-      { title: 'Daumenmeister', description: '' },
+      { title: 'Ruhig Brauner', description: 'die "gebräunteste" Person verteilt 3 Schlücke ' },
       { title: 'Männer', description: 'Alle Männer trinken.' },
-      { title: 'Quizmeister', description: '' },
+      { title: 'Geburtstags Junge Leo', description: 'Leo darf sich jemanden aussuchen der Trinken muss' },
       { title: 'Ich habe noch nie...', description: 'Sage etwas, das du noch nie gemacht hast. Jeder, der es getan hat, muss trinken.' },
       { title: 'Regel', description: 'Stelle eine Regel auf. Jeder muss trinken, wenn er gegen die Regel verstößt.' }
   ];
 
+  cardActionDE2 = [
+    { title: 'Schmiede Goat', description: 'Die Person die am aktivsten in die schmiede geht nimmt einen schluck und darf so viele schlücke verteilen wie er diese woche im gym war' },
+    { title: 'Schluck (pause)', description: 'Trinke 3 strafschlücke' },
+    { title: 'Schere/Stein/Papier', description: 'ihr spielt ne riesen Runde schere/stein/papier jeder Verlierer Kriegt nen strafschluck' },
+    { title: 'Speifrei seid 93', description: 'wenn du seid in den letzen 12 Monaten gekotz hast trink' },
+    { title: 'W bin Ich?', description: 'verlasse kurz den Raum und wenn du wiederkommst hast du 3Min Zeit zueratten wer du bist wenn du es schaffst müssen alle ausser du trinken' },
+    { title: 'j', description: 'wer heute die meisten Joints geraucht hast dreht auf und darf 4 Schlücke verteilen' },
+    { title: 'Filmgenies', description: 'Nennt alle filme die mit den Anfangsbuchstaben von dem spieler anfangen welchen keine mehr einfallen nimmt 2 Strafschlücke' },
+    { title: 'Raucherpause', description: 'Jede Person die es geniesst Ziga/CB-Rette zurauchen nimmt 1 strafschluck' },
+    { title: 'Auf Flasche gesetzt', description: 'Trink deine mische aus' },
+    { title: 'k', description: 'Alle Männer trinken.' },
+    { title: 'j', description: 'Leo darf sich jemanden aussuchen der Trinken muss' },
+    { title: '7', description: 'Sage etwas, das du noch nie gemacht hast. Jeder, der es getan hat, muss trinken.' },
+    { title: 'Regel', description: 'Stelle eine Regel auf. Jeder muss trinken, wenn er gegen die Regel verstößt.' }
+];
+
   title = '';
   description = '';
   @Input() card: string = '';
-  ngOnChanges(): void{
-    if(this.card){
-    let cardNumber = +this.card.split("_")[1];
-    this.title = this.cardActionEn[cardNumber-1].title;
-    this.description = this.cardActionEn[cardNumber-1].description;
+
+  fiftyFifty() {
+    return Math.random() < 0.5;
   }
+  ngOnChanges(): void{
+    if((this.card) && (this.fiftyFifty() == true) ){
+    let cardNumber = +this.card.split("_")[1];
+    this.title = this.cardActionDE1[cardNumber-1].title;
+    this.description = this.cardActionDE1[cardNumber-1].description;
+  }
+  if((this.card) && (this.fiftyFifty() == false)){
+  //console.log(this.card)
+  let cardNumber = +this.card.split("_")[1];
+  this.title = this.cardActionDE2[cardNumber-1].title;
+  this.description = this.cardActionDE2[cardNumber-1].description;
 }
+
+}
+
 }

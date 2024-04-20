@@ -1,0 +1,12 @@
+<section>
+    <div  *ngFor="let i of [0, 1, 2, 3, 4, 5];">
+        <button (click)="closeDialog(i)">
+            <img src="assets/img/profilPicture/{{i+1}}.png">
+          </button>
+    </div>
+
+    <div>
+        <button (click)="closeDialogDelete()"> Delete Player</button>
+        <span>Close</span>
+    </div>
+  </section>

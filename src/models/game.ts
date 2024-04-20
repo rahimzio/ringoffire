@@ -17,11 +17,11 @@ export class Game{
         }
         shuffle(this.stack);
 
-        for(let i = 1; i < 4 ; i ++){
-            this.newI = String(i);
-            this.playerProfilPicture.push(this.newI);
-        }
-        shuffle(this.playerProfilPicture)
+        //for(let i = 1; i < 4 ; i ++){
+        //    this.newI = String(i);
+       //     this.playerProfilPicture.push(this.newI);
+     //   }
+//shuffle(this.playerProfilPicture)
     }
 }
 

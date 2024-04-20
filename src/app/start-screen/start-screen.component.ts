@@ -21,12 +21,14 @@ blankId:string ='';
   }
 
 newGame(){
+
     addDoc(this.onlineGameRef, this.getCleanJson(this.game))
     .then((docRef) => {
+     // console.log(docRef);
       //console.log('Document written with ID:', docRef.id);
       this.router.navigateByUrl('/game/'+docRef.id);
       this.blankId = docRef.id ;
-      console.log(this.blankId)
+      //console.log(this.blankId)
     })
     .catch((error) => {
       console.error('Error adding document:', error);

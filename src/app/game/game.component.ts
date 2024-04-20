@@ -21,6 +21,7 @@ import { AddPlayerComponent } from '../add-player/add-player.component';
 import { GameDescriptionComponent } from '../game-description/game-description.component';
 import { Firestore, collection, doc, getDoc, getDocs, onSnapshot, updateDoc ,addDoc, Unsubscribe} from '@angular/fire/firestore';
 import { ActivatedRoute ,RouterModule} from '@angular/router';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 
@@ -44,12 +45,16 @@ export class GameComponent implements OnInit{
  gameRoute:string= '';
  collectionRef:any;
  test:any[]= [];
+ gameOver:boolean = false;
+ private unsubscribeOnlineGame: Unsubscribe | null = null;
 
  
  constructor(public dialog: MatDialog, private route:ActivatedRoute,private cdr: ChangeDetectorRef){}
  
   blankId:string ='';
   ngOnInit(): void {
+  this.onlineGameRef = collection(this.firestore, 'games');
+  this.unsubscribeOnlineGame = this.subOnlineGame();
   this.getGameLobbyId(); // Die Lobby-ID des Spiels abrufen
   this.getGameData(); // Die Spiel-Daten abrufen
   //this.newGame(); // Ein neues Spiel initialisieren
@@ -58,7 +63,6 @@ export class GameComponent implements OnInit{
    // this.subOnlineGame()
   this.gameId += this.getGameId(); // Die Spiel-ID abrufen und zur Spiel-ID-Variable hinzufügen
   //this.addGameField(); // Das Spielfeld aktualisieren
-  console.log(this.game)
   this.updateGame(this.game); // Das Spiel in der Firestore-Datenbank aktualisieren
   // this.addNewGame(); // Diese Funktion ist auskommentiert, möglicherweise nicht benötigt
   this.setLocalGameToOnlineGame(this.game);
@@ -80,7 +84,6 @@ export class GameComponent implements OnInit{
       this.game.reavealCardAnimation = gameData.reavealCardAnimation || false;
 
       this.cdr.detectChanges();
-      console.log(this.game);
     } else {
       //console.log('No such document!');
     }
@@ -119,8 +122,6 @@ export class GameComponent implements OnInit{
     console.error('Error adding document:', error);
   });
  }
-
-  ngOnDestroy() {}
  // Diese Funktion abonniert Änderungen in der Firestore-Sammlung "games" und gibt eine Unsubscribe-Funktion zurück.
   subOnlineGame(){
     let unsubscribe = onSnapshot(this.onlineGameRef, (games:any) => {
@@ -151,7 +152,7 @@ export class GameComponent implements OnInit{
       let doc = await getDoc(docRef);
   
       if (doc.exists()) {
-        console.log(JsonGame)
+        //console.log(JsonGame)
       await updateDoc( docRef,JsonGame).catch(
      (err)=> (console.log(err)))}
       }
@@ -193,6 +194,7 @@ export class GameComponent implements OnInit{
 
   //durch die funktion wird eine Spielkarte offenbart
   reavealCard(){
+    if(this.game.stack.length >= 0){
     if(!this.game.reavealCardAnimation){
     this.game.reavealCardAnimation = true;
     this.updateGame(this.game);
@@ -204,7 +206,7 @@ export class GameComponent implements OnInit{
     this.game.currentPlayer ++;
     this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
     this.updateGame(this.game);
-    
+
     setTimeout(() => {
       if (this.game.currentCard !== undefined) {
         this.game.playedCards.push(this.game.currentCard);
@@ -213,6 +215,9 @@ export class GameComponent implements OnInit{
       }
       
     }, 1000);
+  }else{
+    this.gameOver = true;
+  }
   
     
   }
@@ -226,10 +231,43 @@ export class GameComponent implements OnInit{
     dialogRef.afterClosed().subscribe(name => {
       if(name != undefined && name.length>0){
       this.game.players.push(name);
+      this.game.playerProfilPicture.push("1.png");
       this.updateGame(this.game);
       }
     });
   }
 
+  ngOnDestroy() {
+    // Beim Zerstören der Komponente das Firestore-Abonnement beenden
+    if (this.unsubscribeOnlineGame) {
+      this.unsubscribeOnlineGame();
+    }
+  }
+
+  editPlayer(player:string,i:number){
+   // console.log(player,i);
+    const dialogRef = this.dialog.open(EditPlayerComponent, {
+      
+    });
+    dialogRef.afterClosed().subscribe(change => {
+    
+    if(change){
+      
+      if(change == "DELETE"){
+        this.game.players.splice(i,1);
+        this.game.playerProfilPicture.splice(i,1);
+        console.log("delete")
+     }else{
+      console.log("profilbild geändert", change)
+      this.game.playerProfilPicture[i] = change;
+      this.updateGame(this.game);
+     }
+    }
+    });
+  }
+
+  restartGame() {
+    this.gameOver = false;
+  }
 }
 
