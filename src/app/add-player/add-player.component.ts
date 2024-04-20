@@ -15,7 +15,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { DialogData } from '../game/game.component';
+import { DialogData, GameComponent } from '../game/game.component';
 
 @Component({
   selector: 'app-add-player',
@@ -30,7 +30,8 @@ import { DialogData } from '../game/game.component';
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatFormFieldModule
+    MatFormFieldModule,
+    GameComponent
   ],
   templateUrl: './add-player.component.html',
   styleUrl: './add-player.component.scss'

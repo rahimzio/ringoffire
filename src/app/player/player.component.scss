@@ -30,4 +30,8 @@
         font-size: 36px;
         color: black;
     }
+    @media(max-width:960px){
+    min-width: 75px;
+    max-width: 200px;
+    }
 }

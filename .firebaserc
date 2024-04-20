@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ringoffire-de23d": {
+      "hosting": {
+        "ringoffire": [
+          "ringoffire-de23d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ringoffire-de23d"
+  }
+}

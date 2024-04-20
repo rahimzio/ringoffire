@@ -15,13 +15,13 @@
        <!--Stack of playedcards-->
         <img class="played-card" *ngFor="let  card of game.playedCards;let i = index;"  src="./../../assets/img/gameCards/{{card}}.png">
         <!--Current Card Animation-->
-        <img (click)="reavealCard()" *ngIf="reavealCardAnimation"  class=" reveal-card" [class.reveal-card]="reavealCardAnimation" style="right: 25px;"  
-        src="./../../assets/img/gameCards/{{currentCard}}.png">
+        <img (click)="reavealCard()" *ngIf="game.reavealCardAnimation"  class=" reveal-card" [class.reveal-card]="game.reavealCardAnimation" style="right: 25px;"  
+        src="./../../assets/img/gameCards/{{game.currentCard}}.png">
     </div>
 </div>
 
 
-<app-game-description [card]="currentCard"></app-game-description>
+<app-game-description [card]="game.currentCard"></app-game-description>
 
 <!--button to add a new player-->
 <button mat-fab color="primary" (click)="openDialog()" class="bnt-add">

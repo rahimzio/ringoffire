@@ -4,7 +4,9 @@ export class Game{
     public playedCards:string[] = [];
     public playerProfilPicture:string[]=[];
     public currentPlayer:number = 0;
-    private newI:string = '';
+    public newI:string = '';
+    public currentCard:string = '';
+    public reavealCardAnimation = false;
 
     constructor(){
         for(let i = 1; i < 14 ; i ++){
